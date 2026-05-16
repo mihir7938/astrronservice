@@ -1,0 +1,187 @@
+label.error {
+  	color: #ff0000;
+  	font-size: 14px;
+  	font-weight: normal !important;
+    width: 100%;
+}
+.loader {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 9998;
+  background: black none repeat scroll 0% 0%;
+  opacity: 0.25;
+  display: none;
+}
+.loader-inner {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -20px;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+.hidden {
+  display: none;
+}
+.form .select2-container--default .select2-selection--single {
+  border: 1px solid #ced4da;
+  padding: .46875rem .75rem;
+  height: calc(2.25rem + 2px);
+}
+.form .select2-container--default .select2-selection--single .select2-selection__rendered {
+  padding-left: 0;
+  height: auto;
+  margin-top: -3px;
+}
+.form .select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 31px;
+  right: 6px;
+}
+.form .select2-container--default .select2-selection--single .select2-selection__arrow b {
+  margin-top: 0;
+}
+#edit-inquiry-form .btn-outline-primary {
+  cursor: default;
+  background-color: #fff;
+  color: #007bff;
+}
+.ekko-lightbox .modal-header .modal-title {
+    display: none !important;
+}
+.ekko-lightbox .modal-header {
+    justify-content: flex-end;
+    border: none;
+    padding: 0.5rem 1rem 0;
+}
+.ekko-lightbox .ekko-lightbox-nav-overlay a {
+    color: #000;
+}
+.login-box .card-header img, .register-box .card-header img {
+  width: 200px;
+}
+
+
+/* Layout changes Admin Panel Start */
+
+.content-header {
+  padding: 8px .5rem;
+}
+.content-header h1 {
+  font-size: 1.2rem;
+}
+.form-group .form-control {
+  height: 30px;
+  padding: 3px 12px;
+  font-size: 14px;
+  line-height: 1;
+}
+.form-group textarea.form-control {
+  height: auto;
+  padding: 5px 12px;
+  line-height: normal;
+}
+.form-group .custom-file-label {
+  height: 30px;
+  line-height: 1;
+}
+.form-group .custom-file, .form-group .custom-file-input {
+  height: 30px;
+}
+.custom-file-label::after {
+  padding: 3px 12px;
+  height: 28px;
+}
+.form-group {
+  margin-bottom: 10px;
+}
+.form-group label {
+  font-size: 14px;
+}
+.btn {
+  padding: 5px 12px;
+  font-size: 14px;
+  line-height: normal;
+}
+.card-header, .card-footer {
+  padding: .50rem 1rem;
+}
+.card-title {
+  font-size: 1rem;
+}
+.card-body {
+  padding: 1rem;
+}
+.card-body .dataTables_wrapper {
+  font-size: 14px;
+}
+.dataTables_wrapper .table th, .dataTables_wrapper .table td  {
+  padding: .50rem;
+}
+.dataTables_wrapper .btn {
+  padding: 5px 8px;
+}
+.dataTables_wrapper .status .d-inline-flex {
+  font-size: 12px;
+  padding: .25rem .5rem;
+}
+.dataTables_wrapper div.dt-buttons {
+  margin-left: 10px;
+}
+#booking_details {
+  display: none;
+}
+#booking_details .summary div {
+  margin-bottom: .5rem;
+}
+#booking_details .summary label {
+  margin-bottom: 0;
+}
+.start_duty, .end_duty {
+    display: none;
+    margin-top: 10px;
+}
+.form .bootstrap-datetimepicker-widget table td, .form .bootstrap-datetimepicker-widget table td span {
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+}
+#approve-invoices-form label {
+    margin-bottom: 0.2rem;
+}
+#add-entries-form .form-group .form-control {
+    padding: 3px 8px;
+}
+.form .select2-container--default .select2-selection--single {
+    border: 1px solid #dc3545;
+    padding: 3px 12px;
+    height: 30px;
+}
+.form .select2-container--default .select2-selection--single .select2-selection__rendered {
+    padding-left: 0;
+    font-size: 14px;
+}
+.form .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 24px;
+}
+.form .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    margin-top: 0;
+}
+.select2-results {
+    font-size: 14px;
+}
+.complain_products {
+  display: none;
+}
+
+/* Layout changes Admin Panel End */
+
+@media (max-width: 767px) {
+  #add-inquiry-form .form-group > label, #edit-inquiry-form .form-group > label {
+    display: none;
+  }
+}
