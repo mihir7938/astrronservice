@@ -58,14 +58,14 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         @if(Auth::check() && (Auth::user()->isUser()))
                             <li class="nav-item">
-                                <a href="{{route('users.index')}}" class="nav-link {{(Route::currentRouteName() == 'users.index') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>Dashboard</p>
+                                <a href="{{route('users.index')}}" class="nav-link {{(Route::currentRouteName() == 'users.index') || (Route::currentRouteName() == 'users.complains.view') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-clipboard-list"></i>
+                                    <p>My Complains</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{route('complain')}}" class="nav-link {{(Route::currentRouteName() == 'complain') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-clipboard-list"></i>
+                                    <i class="nav-icon fas fa-edit"></i>
                                     <p>Complain Form</p>
                                 </a>
                             </li>

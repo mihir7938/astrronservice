@@ -76,4 +76,5 @@ Route::group(['prefix' => 'services', 'middleware' => 'service'], function () {
 
 Route::group(['prefix' => 'users', 'middleware' => 'user'], function () {
     Route::get('/', [UserController::class, 'index'])->name('users.index');
+    Route::get('/complains/view/{id}', [UserController::class, 'viewComplain'])->name('users.complains.view');
 }); 
