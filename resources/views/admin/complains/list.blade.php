@@ -48,6 +48,9 @@
                                 <a href="{{route('admin.complains.edit', ['id' => $complain->id])}}" class="btn btn-outline-primary btn-circle">
                                     <i class="fas fa-pen"></i>
                                 </a>
+                                <a href="{{route('admin.complains.delete', ['id' => $complain->id])}}" class="btn btn-outline-danger btn-circle">
+                                    <i class="fas fa-trash"></i>
+                                </a>
                             </td>
                             <td>{{$complain->complain_number}}</td>
                             <td>{{$complain->issue->name}}</td>

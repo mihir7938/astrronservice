@@ -36,7 +36,8 @@ class PageController extends Controller {
     public function complain(Request $request)
     {
         $issues = $this->complainIssueService->getAllComplainIssues();
-        return view('complain')->with('issues', $issues);
+        $users = $this->userService->getAllUsers();
+        return view('complain')->with('issues', $issues)->with('users', $users);
     }
 
     public function saveComplain(Request $request)
@@ -45,6 +46,7 @@ class PageController extends Controller {
         $complain_number = $this->complainService->getComplainNumber();
         $data['complain_number'] = $complain_number;
         $data['user_id'] = Auth::user()->id;
+        $data['assign_id'] = $request->assign;
         $data['contact_name'] = $request->name;
         $data['contact_number'] = $request->phone;
         $data['complain_issue_id'] = $request->complain_issue;

@@ -65,10 +65,25 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="message">Message (Complain History)</label>
+                                            <label for="message">Message* (Complain History)</label>
                                             <textarea class="form-control" id="message" name="message" rows="4" cols="50" placeholder="Message"></textarea>
                                         </div>
                                     </div>
+                                    @if(Auth::check() && Auth::user()->isAdmin())
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="assign">Assign</label>
+                                                <select id="assign" name="assign" class="form-control select2">
+                                                    <option value="">Select Assign</option>
+                                                    @foreach($users as $user)
+                                                        @if($user->isService() || $user->isAdmin())
+                                                           <option value="{{$user->id}}">{{$user->name}} - {{$user->role->name}}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    @endif
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="upload_image">Upload Image (allowed only JPG,JPEG &amp; PNG files)</label>

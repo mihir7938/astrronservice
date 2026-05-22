@@ -39,6 +39,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::post('/fetch-complains', [AdminController::class, 'fetchComplainsByFilter'])->name('admin.complains.fetch');
     Route::get('/complains/edit/{id}', [AdminController::class, 'editComplain'])->name('admin.complains.edit');
     Route::post('/complains/update', [AdminController::class, 'updateComplain'])->name('admin.complains.update.save');
+    Route::get('/complains/delete/{id}', [AdminController::class, 'deleteComplain'])->name('admin.complains.delete');
     Route::get('/issues', [AdminController::class, 'issues'])->name('admin.issues');
     Route::get('/issues/add', [AdminController::class, 'addIssue'])->name('admin.issues.add');
     Route::post('/issues/save', [AdminController::class, 'saveIssue'])->name('admin.issues.add.save');

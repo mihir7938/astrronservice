@@ -102,6 +102,12 @@ class ServiceController extends Controller
                 $videofilename = $this->imageService->uploadFile($request->video, "assets/complain");
                 $data['complain_video'] = '/complain/'.$videofilename;
             }
+            if($request->has('bill')){
+                $billfilepath = public_path('assets/' . $complain->bill);
+                $this->imageService->deleteFile($billfilepath);
+                $billfilename = $this->imageService->uploadFile($request->bill, "assets/complain");
+                $data['bill'] = '/complain/'.$billfilename;
+            }
             $this->complainService->update($complain, $data);
             $issueExistingIds = [];
             if ($request->issue_product) {

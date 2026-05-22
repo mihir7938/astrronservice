@@ -43,11 +43,11 @@
                                                     <a href="{{route('admin.solutions.edit', ['id' => $solution->id])}}" class="btn btn-outline-primary btn-circle">
                                                         <i class="fas fa-pen"></i>
                                                     </a>
-                                                    @if($solution->id != 1)
+                                                    {{--@if($solution->id != 1)
                                                         <a href="{{route('admin.solutions.delete', ['id' => $solution->id])}}" class="btn btn-outline-danger btn-circle">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
-                                                    @endif
+                                                    @endif--}}
                                                 </td>
                                                 <td>{{$solution->name}}</td>
                                             </tr>

@@ -105,6 +105,12 @@ class AdminController extends Controller {
                 $videofilename = $this->imageService->uploadFile($request->video, "assets/complain");
                 $data['complain_video'] = '/complain/'.$videofilename;
             }
+            if($request->has('bill')){
+                $billfilepath = public_path('assets/' . $complain->bill);
+                $this->imageService->deleteFile($billfilepath);
+                $billfilename = $this->imageService->uploadFile($request->bill, "assets/complain");
+                $data['bill'] = '/complain/'.$billfilename;
+            }
             $this->complainService->update($complain, $data);
             $issueExistingIds = [];
             if ($request->issue_product) {
@@ -169,6 +175,23 @@ class AdminController extends Controller {
                 }
             }
             $request->session()->put('message', 'Complain has been updated successfully.');
+            $request->session()->put('alert-type', 'alert-success');
+            return redirect()->route('admin.complains');
+        }catch(\Exception $e){
+            $request->session()->put('message', $e->getMessage());
+            $request->session()->put('alert-type', 'alert-warning');
+            return redirect()->route('admin.complains');
+        }
+    }
+    public function deleteComplain(Request $request, $id)
+    {
+        try{
+            $complain = $this->complainService->getComplainById($id);
+            if(!$complain){
+                throw new BadRequestException('Invalid Request id.');
+            }
+            $this->complainService->delete($complain);
+            $request->session()->put('message', 'Complain has been deleted successfully.');
             $request->session()->put('alert-type', 'alert-success');
             return redirect()->route('admin.complains');
         }catch(\Exception $e){

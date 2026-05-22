@@ -320,7 +320,6 @@
                                             @endif
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="image">Video (allowed only MP4, AVI, MOV)</label>
@@ -335,6 +334,25 @@
                                                     <a href="{{asset('assets/'.$complain->complain_video)}}" target="_blank" class="btn btn-primary">
                                                         <i class="fas fa-video mr-2"></i>
                                                         View Uploaded Video
+                                                    </a>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="bill">Upload Bill (allowed only PDF)</label>
+                                            <div class="input-group pdf_div">
+                                                <div class="custom-file">             
+                                                    <input type="file" class="custom-file-input" id="bill" name="bill">
+                                                    <label class="custom-file-label" for="bill">Choose file</label>
+                                                </div>              
+                                            </div>
+                                            @if($complain->bill)
+                                                <div class="mt-3">
+                                                    <a href="{{asset('assets/'.$complain->bill)}}" target="_blank" class="btn btn-primary">
+                                                        <i class="fas fa-file-pdf mr-2"></i>
+                                                        View Uploaded Bill
                                                     </a>
                                                 </div>
                                             @endif
@@ -474,6 +492,10 @@
                 video: {
                     extension: "mp4|avi|mov",
                     maxsize: 5000000,
+                },
+                bill: {
+                    extension: "pdf",
+                    maxsize: 1000000,
                 }
             },
             messages:{
@@ -502,6 +524,10 @@
                 video: {
                     extension: "Please select valid video.",
                     maxsize: "Video size must be less than 5MB."
+                },
+                bill: {
+                    extension: "Please select valid file.",
+                    maxsize: "PDF File size must be less than 1MB."
                 }
             },
             errorPlacement: function(error, element) {
@@ -509,6 +535,8 @@
                     $(".image_div").after(error);
                 } else if (element.attr("name") == "video") {
                     $(".video_div").after(error);
+                } else if (element.attr("name") == "bill") {
+                    $(".pdf_div").after(error);
                 } else {
                     error.insertAfter(element);
                 }

@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Complain extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'complains';
     public $timestamps = true;
@@ -30,6 +32,7 @@ class Complain extends Model
         'message',
         'complain_date',
         'complain_video',
+        'bill',
     ];
 
     public function user()
