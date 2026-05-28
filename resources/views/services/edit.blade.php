@@ -319,9 +319,15 @@
                                             @endphp
                                             @if(($complain_image->count() > 0))
                                                 @foreach($complain_image as $row)
-                                                    <a href="{{asset('assets/'.$row->image)}}" data-toggle="lightbox" data-gallery="gallery1">
-                                                        <img src="{{asset('assets/'.$row->image)}}" class="mr-2 mt-4 my-2" width="150px" />
-                                                    </a>
+                                                    <div class="image-box" id="img_{{$row->id}}">
+                                                        <a href="{{asset('assets/'.$row->image)}}" data-toggle="lightbox" data-gallery="gallery1">
+                                                            <img src="{{asset('assets/'.$row->image)}}" class="mr-2 mt-4 my-2" width="150px" />
+                                                        </a>
+                                                        <br>
+                                                        <button type="button" class="delete-image" data-id="{{$row->id}}">
+                                                            <i class="far fa-window-close"></i>
+                                                        </button>
+                                                    </div>
                                                 @endforeach
                                             @endif
                                         </div>
@@ -463,6 +469,25 @@
             $(this).ekkoLightbox({
                 alwaysShowClose: true
             });
+        });
+        $(document).on('click', '.delete-image', function () {
+            let id = $(this).data('id');
+            if(confirm('Are you sure you want to delete this image?')) {
+                $.ajax({
+                    url: "{{ route('services.complains.image.delete') }}",
+                    type: "POST",
+                    data: {
+                        id: id,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function (response) {
+                        $('#img_' + id).remove();
+                    },
+                    error: function () {
+                        alert('Something went wrong.');
+                    }
+                });
+            }
         });
         bsCustomFileInput.init();
         $('#edit-complain-form').validate({

@@ -177,6 +177,27 @@ label.error {
 .complain_products {
   display: none;
 }
+.image-box {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+.delete-image {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: white;
+    border: none;
+    color: red;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 2px 5px;
+    border-radius: 50%;
+}
+.delete-image:hover {
+    background: red;
+    color: white;
+}
 
 /* Layout changes Admin Panel End */
 

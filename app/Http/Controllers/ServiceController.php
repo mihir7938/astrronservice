@@ -11,6 +11,7 @@ use App\Services\ProductService;
 use App\Services\ComplainService;
 use App\Services\ComplainPhotosService;
 use App\Models\Complain;
+use App\Models\ComplainPhoto;
 use App\Models\ComplainIssueProduct;
 use App\Models\ComplainReceiveProduct;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
@@ -184,5 +185,18 @@ class ServiceController extends Controller
             $request->session()->put('alert-type', 'alert-warning');
             return redirect()->route('services.complains');
         }
+    }
+    public function deleteImage(Request $request)
+    {
+        $photo = ComplainPhoto::find($request->id);
+        if (!$photo) {
+            return response()->json(['error' => 'Image not found'], 404);
+        }
+        $path = public_path('assets/' . $photo->image);
+        if (file_exists($path)) {
+            $this->imageService->deleteFile($path);
+        }
+        $photo->delete();
+        return response()->json(['success' => true]);
     }
 }

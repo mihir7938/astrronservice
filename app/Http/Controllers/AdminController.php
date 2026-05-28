@@ -13,6 +13,7 @@ use App\Services\ComplainPhotosService;
 use App\Services\WhatsappService;
 use App\Models\User;
 use App\Models\Complain;
+use App\Models\ComplainPhoto;
 use App\Models\ComplainIssueProduct;
 use App\Models\ComplainReceiveProduct;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
@@ -201,6 +202,24 @@ class AdminController extends Controller {
             $request->session()->put('alert-type', 'alert-warning');
             return redirect()->route('admin.complains');
         }
+    }
+    public function deleteImage(Request $request)
+    {
+        $photo = ComplainPhoto::find($request->id);
+        if (!$photo) {
+            return response()->json(['error' => 'Image not found'], 404);
+        }
+        $path = public_path('assets/' . $photo->image);
+        if (file_exists($path)) {
+            $this->imageService->deleteFile($path);
+        }
+        $photo->delete();
+        return response()->json(['success' => true]);
+    }
+    public function deletedComplains()
+    {
+        $complains = Complain::onlyTrashed()->get();
+        return view('admin.complains.deleted')->with('complains', $complains);
     }
     public function issues(Request $request)
     {

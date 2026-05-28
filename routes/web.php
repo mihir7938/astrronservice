@@ -40,6 +40,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/complains/edit/{id}', [AdminController::class, 'editComplain'])->name('admin.complains.edit');
     Route::post('/complains/update', [AdminController::class, 'updateComplain'])->name('admin.complains.update.save');
     Route::get('/complains/delete/{id}', [AdminController::class, 'deleteComplain'])->name('admin.complains.delete');
+    Route::post('/complains/image/delete', [AdminController::class, 'deleteImage'])->name('admin.complains.image.delete');
+    Route::get('/deleted-complains', [AdminController::class, 'deletedComplains'])->name('admin.deleted.complains');
     Route::get('/issues', [AdminController::class, 'issues'])->name('admin.issues');
     Route::get('/issues/add', [AdminController::class, 'addIssue'])->name('admin.issues.add');
     Route::post('/issues/save', [AdminController::class, 'saveIssue'])->name('admin.issues.add.save');
@@ -73,6 +75,7 @@ Route::group(['prefix' => 'services', 'middleware' => 'service'], function () {
     Route::post('/fetch-complains', [ServiceController::class, 'fetchComplainsByFilter'])->name('services.complains.fetch');
     Route::get('/complains/edit/{id}', [ServiceController::class, 'editComplain'])->name('services.complains.edit');
     Route::post('/complains/update', [ServiceController::class, 'updateComplain'])->name('services.complains.update.save');
+    Route::post('/complains/image/delete', [ServiceController::class, 'deleteImage'])->name('services.complains.image.delete');
 });   
 
 Route::group(['prefix' => 'users', 'middleware' => 'user'], function () {
