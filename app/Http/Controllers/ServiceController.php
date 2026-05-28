@@ -42,8 +42,12 @@ class ServiceController extends Controller
     public function index(Request $request)
     {
         $user_id = Auth::user()->id;
+        $all_complains = Complain::where(function ($q) use ($user_id) {
+            $q->where('user_id', $user_id)
+              ->orWhere('assign_id', $user_id);
+        })->count();
         $solutions = $this->solutionStageService->getAllSolutionStagesByUserAssign($user_id);
-        return view('services.index')->with('solutions', $solutions);
+        return view('services.index')->with('all_complains', $all_complains)->with('solutions', $solutions);
     }
     public function getComplains(Request $request)
     {
@@ -93,6 +97,7 @@ class ServiceController extends Controller
             $data['contact_number'] = $request->phone;
             $data['complain_issue_id'] = $request->complain_issue;
             $data['company_name'] = $request->company_name;
+            $data['company_address'] = $request->company_address;
             $data['estimation_cost'] = $request->estimation_cost;
             $data['solution_id'] = $request->solution_status;
             $data['message'] = $request->message;

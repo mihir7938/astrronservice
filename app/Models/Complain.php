@@ -27,6 +27,7 @@ class Complain extends Model
         'contact_number',
         'complain_issue_id',
         'company_name',
+        'company_address',
         'estimation_cost',
         'solution_id',
         'message',

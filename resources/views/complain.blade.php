@@ -48,6 +48,18 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <label for="company_name">Company Name*</label>
+                                            <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Company Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="company_address">Company Address*</label>
+                                            <input type="text" class="form-control" id="company_address" name="company_address" placeholder="Company Address">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
                                             <label for="complain_issue">Complain Details*</label>
                                             <select id="complain_issue" name="complain_issue" class="form-control">
                                                 <option value="">Select</option>
@@ -55,12 +67,6 @@
                                                     <option value="{{$issue->id}}">{{$issue->name}}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="company_name">Company Name</label>
-                                            <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Company Name">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -133,6 +139,12 @@
                     minlength: 10,
                     maxlength: 10
                 },
+                company_name:{
+                    required: true
+                },
+                company_address:{
+                    required: true
+                },
                 complain_issue:{
                     required: true
                 },
@@ -154,6 +166,12 @@
                 },
                 phone:{
                     required: "Plese enter mobile number.",
+                },
+                company_name:{
+                    required: "Please enter company name."
+                },
+                company_address:{
+                    required: "Please enter company address."
                 },
                 complain_issue:{
                     required: "Please select complain issue."

@@ -51,6 +51,7 @@ class PageController extends Controller {
         $data['contact_number'] = $request->phone;
         $data['complain_issue_id'] = $request->complain_issue;
         $data['company_name'] = $request->company_name;
+        $data['company_address'] = $request->company_address;
         $data['message'] = $request->message;
         $data['complain_date'] = date('Y-m-d');
         if($request->has('upload_video')){

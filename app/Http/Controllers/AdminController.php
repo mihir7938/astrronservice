@@ -45,8 +45,9 @@ class AdminController extends Controller {
 
     public function index(Request $request)
     {
+        $all_complains = Complain::count(); 
         $solutions = $this->solutionStageService->getAllSolutionStages();
-        return view('admin.index')->with('solutions', $solutions);
+        return view('admin.index')->with('all_complains', $all_complains)->with('solutions', $solutions);
     }
     public function getComplains(Request $request)
     {
@@ -96,6 +97,7 @@ class AdminController extends Controller {
             $data['contact_number'] = $request->phone;
             $data['complain_issue_id'] = $request->complain_issue;
             $data['company_name'] = $request->company_name;
+            $data['company_address'] = $request->company_address;
             $data['estimation_cost'] = $request->estimation_cost;
             $data['solution_id'] = $request->solution_status;
             $data['message'] = $request->message;

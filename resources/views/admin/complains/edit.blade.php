@@ -51,19 +51,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="complain_issue">Complain Details*</label>
-                                            <select id="complain_issue" name="complain_issue" class="form-control">
-                                                <option value="">Select</option>
-                                                @foreach($issues as $issue)
-                                                    <option value="{{$issue->id}}" @if($complain->complain_issue_id == $issue->id) selected @endif>{{$issue->name}}</option>
-                                                @endforeach
-                                            </select>
+                                            <label for="company_name">Company Name*</label>
+                                            <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Company Name" value="{{$complain->company_name}}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="company_name">Company Name</label>
-                                            <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Company Name" value="{{$complain->company_name}}">
+                                            <label for="company_address">Company Address*</label>
+                                            <input type="text" class="form-control" id="company_address" name="company_address" placeholder="Company Address" value="{{$complain->company_address}}">
                                         </div>
                                     </div>
                                 </div>
@@ -89,7 +84,18 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="complain_issue">Complain Details*</label>
+                                            <select id="complain_issue" name="complain_issue" class="form-control">
+                                                <option value="">Select</option>
+                                                @foreach($issues as $issue)
+                                                    <option value="{{$issue->id}}" @if($complain->complain_issue_id == $issue->id) selected @endif>{{$issue->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="solution_status">Solution Status*</label>
                                             <select id="solution_status" name="solution_status" class="form-control">
@@ -100,7 +106,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="estimation_cost">Estimation Cost</label>
                                             <input type="text" class="form-control" id="estimation_cost" name="estimation_cost" placeholder="Estimation Cost" value="{{$complain->estimation_cost}}">
@@ -470,6 +476,12 @@
                     minlength: 10,
                     maxlength: 10
                 },
+                company_name:{
+                    required: true
+                },
+                company_address:{
+                    required: true
+                },
                 complain_issue:{
                     required: true
                 },
@@ -504,6 +516,12 @@
                 },
                 phone:{
                     required: "Plese enter mobile number.",
+                },
+                company_name:{
+                    required: "Please enter company name."
+                },
+                company_address:{
+                    required: "Please enter company address."
                 },
                 complain_issue:{
                     required: "Please select complain issue."
