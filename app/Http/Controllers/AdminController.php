@@ -193,6 +193,8 @@ class AdminController extends Controller {
             if(!$complain){
                 throw new BadRequestException('Invalid Request id.');
             }
+            $complain->deleted_by = Auth::user()->id;
+            $complain->save();
             $this->complainService->delete($complain);
             $request->session()->put('message', 'Complain has been deleted successfully.');
             $request->session()->put('alert-type', 'alert-success');

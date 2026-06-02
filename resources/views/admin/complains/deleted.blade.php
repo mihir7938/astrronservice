@@ -26,14 +26,15 @@
                                         <tr>
                                             <th></th>
                                             <th>Complain No</th>
-                                            <th>Issue</th>
-                                            <th>Solution Stage</th>
-                                            <th>Contact Name</th>
+                                            <th>Deleted By</th>
+                                            <th>Date</th>
+                                            <th>Company Name</th>
                                             <th>Mobile Number</th>
-                                            <th>Company</th>
+                                            <th>Contact Person</th>
+                                            <th>Issue</th>
                                             <th>User</th>
                                             <th>Assign</th>
-                                            <th>Date</th>
+                                            <th>Solution Stage</th>
                                             <th>Estimation Cost</th>
                                             <th>Issue Products</th>
                                             <th>Receive Products</th>
@@ -44,14 +45,15 @@
                                         <tr>
                                             <th></th>
                                             <th>Complain No</th>
-                                            <th>Issue</th>
-                                            <th>Solution Stage</th>
-                                            <th>Contact Name</th>
+                                            <th>Deleted By</th>
+                                            <th>Date</th>
+                                            <th>Company Name</th>
                                             <th>Mobile Number</th>
-                                            <th>Company</th>
+                                            <th>Contact Person</th>
+                                            <th>Issue</th>
                                             <th>User</th>
                                             <th>Assign</th>
-                                            <th>Date</th>
+                                            <th>Solution Stage</th>
                                             <th>Estimation Cost</th>
                                             <th>Issue Products</th>
                                             <th>Receive Products</th>
@@ -62,15 +64,16 @@
                                         @foreach($complains as $complain)
                                             <tr>
                                                 <td style="width: 10px;text-align: center;"></td>
-                                                <td>{{$complain->complain_number}}</td>
-                                                <td>{{$complain->issue->name}}</td>
-                                                <td>{{$complain->solution ? $complain->solution->name : ''}}</td>
-                                                <td>{{$complain->contact_name}}</td>
-                                                <td>{{$complain->contact_number}}</td>
+                                                <td>{{$complain->id}}</td>
+                                                <td>{{$complain->deletedBy->name}}</td>
+                                                <td>{{Carbon\Carbon::parse($complain->complain_date)->format('d-m-Y')}}</td>
                                                 <td>{{$complain->company_name}}</td>
+                                                <td>{{$complain->contact_number}}</td>
+                                                <td>{{$complain->contact_name}}</td>
+                                                <td>{{$complain->issue->name}}</td>
                                                 <td>{{$complain->user->name}}</td>
                                                 <td>{{$complain->assign ? $complain->assign->name : ''}}</td>
-                                                <td>{{Carbon\Carbon::parse($complain->complain_date)->format('d-m-Y')}}</td>
+                                                <td>{{$complain->solution ? $complain->solution->name : ''}}</td>
                                                 <td>{{$complain->estimation_cost}}</td>
                                                 <td>
                                                     @if($complain->issueProducts->count() > 0)

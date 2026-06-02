@@ -34,6 +34,7 @@ class Complain extends Model
         'complain_date',
         'complain_video',
         'bill',
+        'deleted_by',
     ];
 
     public function user()
@@ -69,5 +70,10 @@ class Complain extends Model
     public function photos()
     {
         return $this->hasMany(ComplainPhoto::class, 'complain_id', 'id');
+    }
+
+    public function deletedBy()
+    {
+        return $this->belongsTo(User::class, 'deleted_by', 'id');
     }
 }
