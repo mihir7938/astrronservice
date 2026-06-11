@@ -371,6 +371,92 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <h5 class="btn btn-outline-primary">1st Followup</h5>
+                                        <div class="form-group">
+                                            <label for="followup_date_1">Date</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                </div>
+                                                <input type="text" id="followup_date_1" name="followup_date_1" class="form-control followup_date" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" value="{{$complain->followup_date_1 ? Carbon\Carbon::parse($complain->followup_date_1)->format('d/m/Y') : ''}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="followup_remarks_1">Remarks</label>
+                                            <textarea class="form-control" id="followup_remarks_1" name="followup_remarks_1" rows="4" cols="50" placeholder="Followup Remarks">{{$complain->followup_remarks_1}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="btn btn-outline-primary">2nd Followup</h5>
+                                        <div class="form-group">
+                                            <label for="followup_date_2">Date</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                </div>
+                                                <input type="text" id="followup_date_2" name="followup_date_2" class="form-control followup_date" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" value="{{$complain->followup_date_2 ? Carbon\Carbon::parse($complain->followup_date_2)->format('d/m/Y') : ''}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="followup_remarks_2">Remarks</label>
+                                            <textarea class="form-control" id="followup_remarks_2" name="followup_remarks_2" rows="4" cols="50" placeholder="Followup Remarks">{{$complain->followup_remarks_2}}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="btn btn-outline-primary">3rd Followup</h5>
+                                        <div class="form-group">
+                                            <label for="followup_date_3">Date</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                </div>
+                                                <input type="text" id="followup_date_3" name="followup_date_3" class="form-control followup_date" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" value="{{$complain->followup_date_3 ? Carbon\Carbon::parse($complain->followup_date_3)->format('d/m/Y') : ''}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="followup_remarks_3">Remarks</label>
+                                            <textarea class="form-control" id="followup_remarks_3" name="followup_remarks_3" rows="4" cols="50" placeholder="Followup Remarks">{{$complain->followup_remarks_3}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="btn btn-outline-primary">4th Followup</h5>
+                                        <div class="form-group">
+                                            <label for="followup_date_4">Date</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                </div>
+                                                <input type="text" id="followup_date_4" name="followup_date_4" class="form-control followup_date" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" value="{{$complain->followup_date_4 ? Carbon\Carbon::parse($complain->followup_date_4)->format('d/m/Y') : ''}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="followup_remarks_4">Remarks</label>
+                                            <textarea class="form-control" id="followup_remarks_4" name="followup_remarks_4" rows="4" cols="50" placeholder="Followup Remarks">{{$complain->followup_remarks_4}}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="btn btn-outline-primary">5th Followup</h5>
+                                        <div class="form-group">
+                                            <label for="followup_date_5">Date</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                </div>
+                                                <input type="text" id="followup_date_5" name="followup_date_5" class="form-control followup_date" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" value="{{$complain->followup_date_5 ? Carbon\Carbon::parse($complain->followup_date_5)->format('d/m/Y') : ''}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="followup_remarks_5">Remarks</label>
+                                            <textarea class="form-control" id="followup_remarks_5" name="followup_remarks_5" rows="4" cols="50" placeholder="Followup Remarks">{{$complain->followup_remarks_5}}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary" id="btnsubmit" name="btnsubmit">Submit</button>
@@ -417,6 +503,7 @@
         });
     }
     $(function () {
+        $('.followup_date').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' });
         initializeIssueDatepicker($('.issue-product-row'));
         initializeReceiveDatepicker($('.receive-product-row'));
         $(document).on('change', '#solution_status', function(){

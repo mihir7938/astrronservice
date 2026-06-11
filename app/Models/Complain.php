@@ -34,6 +34,16 @@ class Complain extends Model
         'complain_date',
         'complain_video',
         'bill',
+        'followup_remarks_1',
+        'followup_date_1',
+        'followup_remarks_2',
+        'followup_date_2',
+        'followup_remarks_3',
+        'followup_date_3',
+        'followup_remarks_4',
+        'followup_date_4',
+        'followup_remarks_5',
+        'followup_date_5',
         'deleted_by',
     ];
 

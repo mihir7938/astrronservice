@@ -114,6 +114,31 @@ class AdminController extends Controller {
                 $billfilename = $this->imageService->uploadFile($request->bill, "assets/complain");
                 $data['bill'] = '/complain/'.$billfilename;
             }
+            $data['followup_remarks_1'] = $request->followup_remarks_1;
+            $data['followup_date_1'] = NULL;
+            if($request->followup_date_1) {
+                $data['followup_date_1'] = date("Y-m-d", strtotime(str_replace('/', '-', $request->followup_date_1)));
+            }
+            $data['followup_remarks_2'] = $request->followup_remarks_2;
+            $data['followup_date_2'] = NULL;
+            if($request->followup_date_2) {
+                $data['followup_date_2'] = date("Y-m-d", strtotime(str_replace('/', '-', $request->followup_date_2)));
+            }
+            $data['followup_remarks_3'] = $request->followup_remarks_3;
+            $data['followup_date_3'] = NULL;
+            if($request->followup_date_3) {
+                $data['followup_date_3'] = date("Y-m-d", strtotime(str_replace('/', '-', $request->followup_date_3)));
+            }
+            $data['followup_remarks_4'] = $request->followup_remarks_4;
+            $data['followup_date_4'] = NULL;
+            if($request->followup_date_4) {
+                $data['followup_date_4'] = date("Y-m-d", strtotime(str_replace('/', '-', $request->followup_date_4)));
+            }
+            $data['followup_remarks_5'] = $request->followup_remarks_5;
+            $data['followup_date_5'] = NULL;
+            if($request->followup_date_5) {
+                $data['followup_date_5'] = date("Y-m-d", strtotime(str_replace('/', '-', $request->followup_date_5)));
+            }
             $this->complainService->update($complain, $data);
             $issueExistingIds = [];
             if ($request->issue_product) {
