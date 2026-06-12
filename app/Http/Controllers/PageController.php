@@ -7,6 +7,7 @@ use App\Services\UserService;
 use App\Services\ComplainIssueService;
 use App\Services\ComplainService;
 use App\Services\ComplainPhotosService;
+use App\Services\AssignLogService;
 use App\Services\WhatsappService;
 use App\Models\User;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller {
 
-	private $imageService, $userService, $complainIssueService, $complainService, $complainPhotosService, $whatsappService;
+	private $imageService, $userService, $complainIssueService, $complainService, $complainPhotosService, $assignLogService, $whatsappService;
 
     public function __construct(
         UploadImageService $imageService,
@@ -22,6 +23,7 @@ class PageController extends Controller {
         ComplainIssueService $complainIssueService,
         ComplainService $complainService,
         ComplainPhotosService $complainPhotosService,
+        AssignLogService $assignLogService,
         WhatsappService $whatsappService
     )
     {
@@ -30,6 +32,7 @@ class PageController extends Controller {
         $this->complainIssueService = $complainIssueService;
         $this->complainService = $complainService;
         $this->complainPhotosService = $complainPhotosService;
+        $this->assignLogService = $assignLogService;
         $this->whatsappService = $whatsappService;
     }
 
@@ -66,6 +69,16 @@ class PageController extends Controller {
                 $filename = $this->imageService->uploadFile($img, "assets/complain");
                 $data['image'] = '/complain/'.$filename;
                 $this->complainPhotosService->create($data);
+            }
+        }
+        if(Auth::user()->isAdmin()) {
+            if($request->assign) {
+                $log_data['complain_id'] = $complain_id;
+                $log_data['user_id'] = Auth::user()->id;
+                $log_data['assign_from'] = Auth::user()->id;
+                $log_data['assign_to'] = $request->assign;
+                $log_data['date'] = date('Y-m-d H:i:s');
+                $this->assignLogService->create($log_data);
             }
         }
         $message_type = "text";

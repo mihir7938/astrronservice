@@ -10,6 +10,7 @@ use App\Services\SolutionStageService;
 use App\Services\ProductService;
 use App\Services\ComplainService;
 use App\Services\ComplainPhotosService;
+use App\Services\AssignLogService;
 use App\Models\Complain;
 use App\Models\ComplainPhoto;
 use App\Models\ComplainIssueProduct;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
-    private $imageService, $userService, $complainIssueService, $solutionStageService, $productService, $complainService, $complainPhotosService;
+    private $imageService, $userService, $complainIssueService, $solutionStageService, $productService, $complainService, $complainPhotosService, $assignLogService;
 
     public function __construct (
         UploadImageService $imageService,
@@ -28,7 +29,8 @@ class ServiceController extends Controller
         SolutionStageService $solutionStageService,
         ProductService $productService,
         ComplainService $complainService,
-        ComplainPhotosService $complainPhotosService
+        ComplainPhotosService $complainPhotosService,
+        AssignLogService $assignLogService,
     )
     {
         $this->imageService = $imageService;
@@ -38,6 +40,7 @@ class ServiceController extends Controller
         $this->productService = $productService;
         $this->complainService = $complainService;
         $this->complainPhotosService = $complainPhotosService;
+        $this->assignLogService = $assignLogService;
     }
 
     public function index(Request $request)
@@ -93,6 +96,7 @@ class ServiceController extends Controller
             if(!$complain){
                 throw new BadRequestException('Invalid Request id');
             }
+            $assign_id = $complain->assign_id;
             $data['assign_id'] = $request->assign;
             $data['contact_name'] = $request->name;
             $data['contact_number'] = $request->phone;
@@ -201,6 +205,14 @@ class ServiceController extends Controller
                     $data['image'] = '/complain/'.$filename;
                     $this->complainPhotosService->create($data);
                 }
+            }
+            if ($request->assign != $assign_id) {
+                $log_data['complain_id'] = $complain->id;
+                $log_data['user_id'] = Auth::user()->id;
+                $log_data['assign_from'] = $assign_id;
+                $log_data['assign_to'] = $request->assign;
+                $log_data['date'] = date('Y-m-d H:i:s');
+                $this->assignLogService->create($log_data);
             }
             $request->session()->put('message', 'Complain has been updated successfully.');
             $request->session()->put('alert-type', 'alert-success');
