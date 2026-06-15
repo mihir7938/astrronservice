@@ -95,8 +95,8 @@
                                     <p>Dashboard</p>
                                 </a>
                             </li>
-                            <li class="nav-item {{(Route::currentRouteName() == 'admin.complains') || (Route::currentRouteName() == 'complain') || (Route::currentRouteName() == 'admin.complains.edit') ? 'menu-open' : '' }}">
-                                <a href="#" class="nav-link {{(Route::currentRouteName() == 'admin.complains') || (Route::currentRouteName() == 'complain') || (Route::currentRouteName() == 'admin.complains.edit') ? 'active' : '' }}">
+                            <li class="nav-item {{(Route::currentRouteName() == 'admin.complains') || (Route::currentRouteName() == 'complain') || (Route::currentRouteName() == 'admin.complains.edit') || (Route::currentRouteName() == 'admin.complains.log') ? 'menu-open' : '' }}">
+                                <a href="#" class="nav-link {{(Route::currentRouteName() == 'admin.complains') || (Route::currentRouteName() == 'complain') || (Route::currentRouteName() == 'admin.complains.edit') || (Route::currentRouteName() == 'admin.complains.log') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-clipboard-list"></i>
                                     <p>Complains<i class="right fas fa-angle-left"></i></p>
                                 </a>

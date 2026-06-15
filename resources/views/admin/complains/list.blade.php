@@ -51,7 +51,7 @@
                                 <a href="{{route('admin.complains.delete', ['id' => $complain->id])}}" class="btn btn-outline-danger btn-circle">
                                     <i class="fas fa-trash"></i>
                                 </a>
-                                <a href="{{route('admin.complains.log', ['id' => $complain->id])}}" class="btn btn-outline-dark btn-circle">
+                                <a href="{{route('admin.complains.log', ['id' => $complain->id])}}" class="btn btn-outline-dark btn-circle" target="_blank">
                                     <i class="fas fa-history"></i>
                                 </a>
                             </td>
