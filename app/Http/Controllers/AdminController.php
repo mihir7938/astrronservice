@@ -242,6 +242,21 @@ class AdminController extends Controller {
             return redirect()->route('admin.complains');
         }
     }
+    public function logComplain(Request $request, $id)
+    {
+        try{
+            $complain = $this->complainService->getComplainById($id);
+            if(!$complain){
+                throw new BadRequestException('Invalid Request id.');
+            }
+            $logs = $complain->assignLog;
+            return view('admin.complains.log')->with('logs', $logs);
+        }catch(\Exception $e){
+            $request->session()->put('message', $e->getMessage());
+            $request->session()->put('alert-type', 'alert-warning');
+            return redirect()->route('admin.complains');
+        }
+    }
     public function deleteImage(Request $request)
     {
         $photo = ComplainPhoto::find($request->id);

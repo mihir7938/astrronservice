@@ -24,4 +24,19 @@ class AssignLog extends Model
         'assign_to',
         'date',
     ];
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function assignFrom()
+    {
+        return $this->belongsTo(User::class, 'assign_from', 'id');
+    }
+
+    public function assignTo()
+    {
+        return $this->belongsTo(User::class, 'assign_to', 'id');
+    }
 }

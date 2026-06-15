@@ -44,12 +44,15 @@
                 <tbody>
                     @foreach($complains as $complain)
                         <tr>
-                            <td style="width: 80px;text-align: center;">
+                            <td style="width: 120px;text-align: center;">
                                 <a href="{{route('admin.complains.edit', ['id' => $complain->id])}}" class="btn btn-outline-primary btn-circle">
                                     <i class="fas fa-pen"></i>
                                 </a>
                                 <a href="{{route('admin.complains.delete', ['id' => $complain->id])}}" class="btn btn-outline-danger btn-circle">
                                     <i class="fas fa-trash"></i>
+                                </a>
+                                <a href="{{route('admin.complains.log', ['id' => $complain->id])}}" class="btn btn-outline-dark btn-circle">
+                                    <i class="fas fa-history"></i>
                                 </a>
                             </td>
                             <td>{{$complain->id}}</td>

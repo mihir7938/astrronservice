@@ -86,4 +86,9 @@ class Complain extends Model
     {
         return $this->belongsTo(User::class, 'deleted_by', 'id');
     }
+
+    public function assignLog()
+    {
+        return $this->hasMany(AssignLog::class, 'complain_id', 'id');
+    }
 }
