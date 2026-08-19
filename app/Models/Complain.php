@@ -30,6 +30,7 @@ class Complain extends Model
         'company_address',
         'estimation_cost',
         'solution_id',
+        'priority',
         'message',
         'complain_date',
         'complain_video',

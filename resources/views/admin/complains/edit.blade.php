@@ -63,13 +63,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="user">User/Register</label>
                                             <input type="text" class="form-control" id="user" name="user" value="{{$complain->user->name}}" disabled>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="assign">Assign*</label>
                                             <select id="assign" name="assign" class="form-control select2">
@@ -80,6 +80,17 @@
                                                     @endif
 					                            @endforeach
 					                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="priority">Priority</label>
+                                            <select id="priority" name="priority" class="form-control">
+                                                <option value="">Select Priority</option>
+                                                <option value="High" @if($complain->priority == 'High') selected @endif>High</option>
+                                                <option value="Medium" @if($complain->priority == 'Medium') selected @endif>Medium</option>
+                                                <option value="Low" @if($complain->priority == 'Low') selected @endif>Low</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

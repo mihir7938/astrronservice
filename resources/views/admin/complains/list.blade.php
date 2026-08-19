@@ -9,6 +9,7 @@
                     <tr>
                         <th>Action</th>
                         <th>Complain No</th>
+                        <th>Priority</th>
                         <th>Date</th>
                         <th>Company Name</th>
                         <th>Mobile Number</th>
@@ -27,6 +28,7 @@
                     <tr>
                         <th>Action</th>
                         <th>Complain No</th>
+                        <th>Priority</th>
                         <th>Date</th>
                         <th>Company Name</th>
                         <th>Mobile Number</th>
@@ -56,6 +58,15 @@
                                 </a>
                             </td>
                             <td>{{$complain->id}}</td>
+                            <td class="text-center status" style="min-width: 40px;">
+                                @if($complain->priority == 'High')
+                                    <div class="bg-danger d-inline-flex">{{$complain->priority}}</div>
+                                @elseif($complain->priority == 'Medium')
+                                    <div class="bg-warning d-inline-flex">{{$complain->priority}}</div>
+                                @elseif($complain->priority == 'Low')
+                                    <div class="bg-dark d-inline-flex">{{$complain->priority}}</div>
+                                @endif
+                            </td>
                             <td>{{Carbon\Carbon::parse($complain->complain_date)->format('d-m-Y')}}</td>
                             <td>{{$complain->company_name}}</td>
                             <td>{{$complain->contact_number}}</td>

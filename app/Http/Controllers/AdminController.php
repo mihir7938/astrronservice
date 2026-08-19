@@ -100,6 +100,7 @@ class AdminController extends Controller {
             }
             $assign_id = $complain->assign_id;
             $data['assign_id'] = $request->assign;
+            $data['priority'] = $request->priority;
             $data['contact_name'] = $request->name;
             $data['contact_number'] = $request->phone;
             $data['complain_issue_id'] = $request->complain_issue;
