@@ -15,6 +15,8 @@ use App\Models\Complain;
 use App\Models\ComplainPhoto;
 use App\Models\ComplainIssueProduct;
 use App\Models\ComplainReceiveProduct;
+use App\Models\WhatsappMessage;
+use App\Jobs\SendWhatsappMessageJob;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Illuminate\Support\Facades\Auth;
 
@@ -213,6 +215,27 @@ class ServiceController extends Controller
                 $log_data['assign_to'] = $request->assign;
                 $log_data['date'] = date('Y-m-d H:i:s');
                 $this->assignLogService->create($log_data);
+                $assignedUser = $this->userService->getUserById($request->assign);
+                if ($assignedUser && $assignedUser->phone) {
+                    $message = WhatsappMessage::create([
+                        'wa_id'         => '91' . $assignedUser->phone,
+                        'from_number'   => env('WHATSAPP_PHONE_NUMBER'),
+                        'to_number'     => '91' . $assignedUser->phone,
+                        'direction'     => 'outgoing',
+                        'type'          => 'template',
+                        'template_name' => env('ASSIGN_COMPLAINT_TEMPLATE'),
+                        'parameters'    => [
+                            'staff_name' => $assignedUser->name,
+                            'customer_name'=> $request->name,
+                            'customer_mobile' => $request->phone,
+                            'address'  => $request->company_address,
+                            'complain'  => $complain->issue->name,
+                            'message'  => $request->message,
+                        ],
+                        'status'        => 'pending'
+                    ]);
+                    SendWhatsappMessageJob::dispatch($message->id);
+                }
             }
             $request->session()->put('message', 'Complain has been updated successfully.');
             $request->session()->put('alert-type', 'alert-success');

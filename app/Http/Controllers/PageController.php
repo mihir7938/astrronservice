@@ -10,6 +10,8 @@ use App\Services\ComplainPhotosService;
 use App\Services\AssignLogService;
 use App\Services\WhatsappService;
 use App\Models\User;
+use App\Models\WhatsappMessage;
+use App\Jobs\SendWhatsappMessageJob;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Illuminate\Support\Facades\Auth;
 
@@ -81,11 +83,49 @@ class PageController extends Controller {
                 $this->assignLogService->create($log_data);
             }
         }
-        $message_type = "text";
-        $to_number = '91'.$request->phone;
-        $message = '>>> *New Complain* <<<';
-        $message .= '\n\n*Complain No* : '.$complain_id;
-        $response = $this->whatsappService->sendMessage($message_type, $to_number, $message);
+        $complain = $this->complainService->getComplainById($complain_id);
+        $message = WhatsappMessage::create([
+            'wa_id'         => env('ADMIN_MOBILE'),
+            'from_number'   => env('WHATSAPP_PHONE_NUMBER'),
+            'to_number'     => env('ADMIN_MOBILE'),
+            'direction'     => 'outgoing',
+            'type'          => 'template',
+            'template_name' => env('NEW_COMPLAINT_TEMPLATE'),
+            'parameters'    => [
+                'staff_name' => Auth::user()->name,
+                'complain_no'    => $complain_id,
+                'customer_name'=> $request->name,
+                'customer_mobile' => $request->phone,
+                'company_name'  => $request->company_name,
+                'address'  => $request->company_address,
+                'complain'  => $complain->issue->name,
+            ],
+            'status'        => 'pending'
+        ]);
+        SendWhatsappMessageJob::dispatch($message->id);
+        if(Auth::user()->isAdmin()) {
+            if($request->assign) {
+                $assignedUser = $this->userService->getUserById($request->assign);
+                $message2 = WhatsappMessage::create([
+                    'wa_id'         => '91' . $assignedUser->phone,
+                    'from_number'   => env('WHATSAPP_PHONE_NUMBER'),
+                    'to_number'     => '91' . $assignedUser->phone,
+                    'direction'     => 'outgoing',
+                    'type'          => 'template',
+                    'template_name' => env('ASSIGN_COMPLAINT_TEMPLATE'),
+                    'parameters'    => [
+                        'staff_name' => $assignedUser->name,
+                        'customer_name'=> $request->name,
+                        'customer_mobile' => $request->phone,
+                        'address'  => $request->company_address,
+                        'complain'  => $complain->issue->name,
+                        'message'  => $request->message,
+                    ],
+                    'status'        => 'pending'
+                ]);
+                SendWhatsappMessageJob::dispatch($message2->id);
+            }
+        }
         $request->session()->put('message', 'Complain has been generated successfully.');
         $request->session()->put('alert-type', 'alert-success');
         return redirect()->route('complain');
