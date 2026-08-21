@@ -78,11 +78,17 @@ class WhatsappService
         $bodyParameters = [];
 
         foreach ($parameters as $name => $value) {
+            $value = (string) $value;
+            $value = preg_replace('/[\r\n\t]+/', ' ', $value);
+            $value = preg_replace('/ {5,}/', ' ', $value);
+            $value = trim($value);
+
             $bodyParameters[] = [
                 "type" => "text",
                 "parameter_name" => $name,
-                "text" => (string) $value
+                "text" => $value
             ];
+
         }
 
         $payload = [
